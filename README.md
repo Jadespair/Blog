@@ -1,1 +1,1 @@
-# Blog-de-Pr-cticas
+# Blog de Prácticas
