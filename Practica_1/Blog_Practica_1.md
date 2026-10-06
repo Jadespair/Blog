@@ -9,5 +9,22 @@
     
   Durante esta práctica, donde más dificultad encontré fue con el láser. Al principio el robot retrocedía sin haberse chocado con nada, y no entendía muy bien el por qué hasta que imprimí lo que leía el robot y vi que el láser devolvía *-inf* aunque no hubiera ninguna pared cerca, mi código lo tomaba como si hubiera tenido un choque. Estuve probando varias opciones para arreglarlo hasta que me di cuenta de que lo que tenía que hacer era ignorar esas lecturas inválidas y contarlas como distancia lejana. Otro problema que tuve fue que el robot dejaba una franja sin limpiar pegada a la pared, por lo que fui bajando la distancia a la que se detenía la aspiradora, pero, el hueco seguía ahí, por lo que opté por hacer un programa pequeño que solo avanzaba despacio y mostraba la lectura al chocar. Al hacerlo me daba el valor de 0'028 metros, porque el láser está montado en la parte delantera del robot y no en el centro como yo llegué a pensar. También intenté detectar los atascos comparando la posición del robot cada poco segundos, pero lo acabé descartando porque cuando el robot giraba en el sitio el detector saltaba sin estar atascado. Por último, al principio contaba vueltas del bucle para medir el tiempo, pero, comprobé que el bucle iba a más de 90 vueltas por segundo, por lo que lo pasé todo a segundos reales. 
     
-  La diferencia de mi código final con el primer código de ensayo es que me enfoqué mejor en leer bien el sensor, vigilar las tres zonas en vez de solo el frente del robot, medir el tiempo sin pausas y girar siempre hacia donde haya más espacio.
+  La diferencia de mi código final con el primer código de ensayo es que me enfoqué mejor en leer bien el sensor, vigilar las tres zonas en vez de solo el frente del robot, medir el tiempo sin pausas y girar siempre hacia donde haya más espacio.  
+
+  A continuación enseño dos vídeos demostrativos del funcionamiento del código, uno nada más comenzar la aspiradora a funcionar y otro cuando ya lleva un rato limpiando:    
+  He subido la velocidad del vídeo a x2 para que no sea tan lento de visualizar.  
+    
+
+
+https://github.com/user-attachments/assets/28949a31-edcd-4961-b017-55313f935d67  
+
   
+
+https://github.com/user-attachments/assets/c6be6a98-626e-46ec-b279-716f0b79d777
+
+
+
+
+
+
+    
