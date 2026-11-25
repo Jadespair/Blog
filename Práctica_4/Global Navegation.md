@@ -21,7 +21,9 @@ Antes de empezar con el movimiento del coche, hay que agrandar los obstáculos 4
 Usando `cv2.distanceTransform`calculo la distancia de cada celda libre a la zona prohibida. La penalización vale:  
 `penalización = máx(0, 12 - distancia) * 0'7`  
 Es decir, se sube al acercarse a una pared y es cero a partir de 12 celdas. Solo depende del mapa, así que se calcula una vez al arrancar. Mantuve la pendiente (0'7) por debajo de 1 para que el campo siga bajando hacia el destino sin crear mínimos locales.  
-[IMAGEN MAPA DE PENALIZACION]  
+
+<img width="350" height="327" alt="Captura de pantalla 2026-11-25 a las 23 16 38" src="https://github.com/user-attachments/assets/21a07fc0-0bda-4adb-a720-ea69ae3da16d" />
+  
 
 ### Subcampo de propagación  
 Es una onda que sale del destino, con valor 0, y se extiende por las calles libres con el algoritmo de **Dijkstra**, el cual es una cola de prioridad que expande siempre la celda con menor coste. Se consideran los 8 vecinos, con coste 1 en horizontal y vertical y 1'4 (√2) en diagonal. Si una celda se alcanza por un camino más barato, se actualiza. Las celdas prohibidas no se llegan a expandir.  
@@ -29,7 +31,9 @@ La onda se propaga por todo el mapa alcanzable (no se detiene al llegar al coche
 
 ### Campo total  
 El campo final es la suma de los dos subcampos: `campo total = propagación + penalización`.  
-[IMAGEN CAMPO CON RUTA AL DESTINO]. 
+  
+<img width="333" height="330" alt="Captura de pantalla 2026-11-25 a las 23 23 04" src="https://github.com/user-attachments/assets/49654ff6-3d91-4036-918d-f3b4f18ca223" />
+  
 Si el usuario pica sobre un obstáculo, fuera del mapa o dentro de la zona engordada, el destino se descarta con un aviso. Cuando cambia el destino, se recalcula el campo.  
 
 ## Pilotaje del campo a V y W  
@@ -64,6 +68,12 @@ También, al aumentar la velocidad, el coche empezó a hacer eses en las rectas,
 El taxi llega a los destinos que el usuario marca, se detiene al llegar y espera al siguiente destino. Lo que más me costó fue conseguir margen de seguridad en las esquinas y en las calles estrechas, manteniendo el campo como suma de los dos subcampos, la penalización por sí sola desvía poco el camino, así que tuve que apoyarme en el engordado de los obstáculos, en el desplazamiento de los puntos de la ruta local y en limitar la velocidad según el espacio disponible.  
 
 ## Vídeo del resultado  
+He subido la velocidad del vídeo a un x5 para que sea más corto y ocupe menos espacio. En el vídeo se muestra como el coche toma una ruta hacia un destino para luego recalcular la ruta a otro destino seleccionado sin haber llegado al primero. También el pasar por calles estrechas y un giro sobre sí mismo.  
+
+
+
+https://github.com/user-attachments/assets/7f5df0f1-663a-4928-88e1-6d6f4e2161b0
+
 
 
 
